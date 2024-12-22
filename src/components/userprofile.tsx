@@ -2,16 +2,21 @@ import { useState, useEffect } from "react";
 import { api } from "../utils/api";
 import toast from "react-hot-toast";
 
+// Define the UserProfile component
 export function UserProfile() {
+  // Fetch user data using the useQuery hook
   const { data: user, isLoading, isError } = api.user.getUser.useQuery();
+  // Define the mutation for updating user data
   const updateUser = api.user.updateUser.useMutation();
 
+  // State to manage form data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     image: "",
   });
 
+  // State to manage edit mode
   const [isEditing, setIsEditing] = useState(false);
 
   // Update formData when user data is fetched
@@ -25,11 +30,13 @@ export function UserProfile() {
     }
   }, [user]);
 
+  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateUser.mutate(formData, {
@@ -41,7 +48,9 @@ export function UserProfile() {
     });
   };
 
+  // Display loading message while user data is being fetched
   if (isLoading) return <div>Loading user data...</div>;
+  // Display error message if there was an error fetching user data
   if (isError) return <div>Error loading user data.</div>;
 
   return (

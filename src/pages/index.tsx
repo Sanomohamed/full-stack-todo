@@ -1,3 +1,12 @@
+// Explanation:
+// 1. Imports necessary modules and components, including Head for setting HTML head elements, next-auth for authentication, and Jotai for state management.
+// 2. Defines the Home component, which uses the useSession hook to get session data and the useAtom hook to manage the state of the profile modal.
+// 3. Renders the main content of the page, including a title, description, and favicon.
+// 4. If the user is signed in, displays the Todos and CreateTodo components, and a button to open the profile modal.
+// 5. If the user is not signed in, displays a message prompting the user to sign in and a button to sign in.
+// 6. If the user is signed in, displays the user's email and a button to sign out.
+// 7. If the profile modal is open, displays the UserProfile component and a button to close the modal.
+
 import Head from "next/head";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Todos } from "../components/Todos";
@@ -6,7 +15,7 @@ import { useAtom } from "jotai";
 import { isProfileOpenAtom } from "../atoms/profileatoms"; // Import the Jotai atom
 import { UserProfile } from "../components/userprofile";
 
-function Home() {
+function Home(props) {
   const { data: sessionData } = useSession();
 
   const [isProfileOpen, setIsProfileOpen] = useAtom(isProfileOpenAtom); // Use the Jotai atom
