@@ -15,7 +15,7 @@ import { useAtom } from "jotai";
 import { isProfileOpenAtom } from "../atoms/profileatoms"; // Import the Jotai atom
 import { UserProfile } from "../components/userprofile";
 
-function Home(props) {
+function Home() {
   const { data: sessionData } = useSession();
 
   const [isProfileOpen, setIsProfileOpen] = useAtom(isProfileOpenAtom); // Use the Jotai atom
