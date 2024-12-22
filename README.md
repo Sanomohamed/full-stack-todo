@@ -62,3 +62,23 @@ createTRPCContext: Creates the context for each request.
 Prisma is used as the ORM to interact with the database. The Prisma client is initialized in db.ts and used throughout the application to perform database operations.
 Prisma Schema: Defines the database schema and models.
 Prisma Client: Provides methods to interact with the database.
+
+- By following these steps, you should be able to set up and run the project on your local machine.
+# Clone the repository
+git clone https://github.com/Sanomohamed/full-stack-todo-auth.git
+cd full-stack-todo-auth
+
+# Install dependencies
+npm install
+yarn install
+
+# Generate Prisma client
+npx prisma generate
+
+# Push the database schema
+npx prisma db push
+
+# Run the development server
+npm run dev
+# or
+yarn dev
